@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjectDbLINQ;
-internal class ProjectEmployee
+public class ProjectEmployee
 {
   public int Id { get; init; }
   public int EmployeeId { get; init; }
@@ -13,4 +13,5 @@ internal class ProjectEmployee
   public DateTime AssigningTime { get; set; }
   public Employee Employee { get; set; } = null!;
   public Project Project { get; set; } = null!;
+  public override string ToString() => $"{Employee} ({Project})";
 }

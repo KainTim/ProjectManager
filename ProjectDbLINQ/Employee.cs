@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjectDbLINQ;
-internal class Employee
+public class Employee
 {
   public int Id { get; set; }
   public required string Firstname { get; set; }
@@ -20,14 +20,27 @@ internal class Employee
     //id; firstname; lastname; age; salary; department
     //1; Carey; Sands; 53; 3980.6; Training
     string[] parts = line.Split(';');
+
+    //Variable anlegen
+    int age;
+    //Parsen und in die Variable age speichern
+    bool successful = int.TryParse(parts[0], out age);
+    //Die Variable successful beinhaltet true wenn
+    //das Parsen erfolgreich war und in der Variable age 
+    //nun der richtige Wert steht
+
     return new Employee()
     {
       Id = int.Parse(parts[0]),
       Firstname = parts[1],
       Lastname = parts[2],
-      Age = int.Parse(parts[3]),
+
+      //Variable age kann dann ganz normal verwendet werden
+      Age = age,
+      /////////////////////////////////////////////////////
       Salary = double.Parse(parts[4]),
       Department = parts[5],
     };
   }
+  public override string ToString() => $"{Lastname} {Firstname} ({Department})";
 }
